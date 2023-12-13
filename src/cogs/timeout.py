@@ -16,7 +16,6 @@ class Timeout(ErrorHandler):
     @timeout.sub_command()
     async def add(inter: CmdInter, *, member: Member, reason: str, duration:  option_enum({"1 Day": 1, "7 Days": 7, "28 Days": 28})):
         """Timeout a member with a reason and a certain duration."""
-        guildmember = GuildMember(inter, member).owner
         await member.timeout(duration=timedelta(days=duration), reason=reason)
         await inter.send(f"Timed out {member.mention} for {duration} day{"s" if duration > 1 else ""}.")
 
